@@ -1,46 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Simple Slider</title>
-    <link rel="stylesheet" href="index.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  </head>
-  <body>
-    <div class="slider">
-      
-      
-      <ul class="slider-dots">
-        <li class="slider-dot-item active" data-index="0"></li>
-        <li class="slider-dot-item" data-index="1"></li>
-        <li class="slider-dot-item" data-index="2"></li>
-      </ul>
-      <div class="slider-wrapper">
-        <div class="slider-main">
-          <div class="slider-item">
-            <img
-              src="https://www.w3schools.com/bootstrap/la.jpg?fbclid=IwAR2zCxXiO5T07W9ZsmJ-wffp82tFFAPPtb_9W-_hucAuf3FqC1iVktPcqTU"
-              alt=""
-            />
-          </div>
-          <div class="slider-item">
-            <img
-              src="https://www.w3schools.com/bootstrap/chicago.jpg?fbclid=IwAR2YwkwVO-NDSgL_E3F0qxLLjZr2AWQce9qJp0MtAguGNOyQZZ46iMWRcOw"
-              alt=""
-            />
-          </div>
-          <div class="slider-item">
-            <img
-              src="https://www.w3schools.com/bootstrap/ny.jpg?fbclid=IwAR0VHofGuSX3zYJsi-qGumEVriN79yR53y-FIAdN4p_OyrY7Fvrpb2hdSVw"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-      <a class="slider-next" >&#10095;</a>
-      <a class="slider-prev">&#10094;</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Simple Slider</title>
+  <link rel="stylesheet" href="index.css" />
+
+</head>
+
+<body>
+  <div class="slider">
+
+
+    <div class=" slider-dots">
+     <button class="dot1" onclick="slide(1)"></button>
+     <button class="dot2" onclick="slide(2)"></button>
+     <button class="dot3" onclick="slide(3)"></button>
     </div>
-    <script src="./index.js"></script>
-  </body>
+    <div class="slider-wrapper">
+      <div class="slider-main" id="listImg">
+        <img class="slides" id="img1"
+          src="https://www.w3schools.com/bootstrap/la.jpg?fbclid=IwAR2zCxXiO5T07W9ZsmJ-wffp82tFFAPPtb_9W-_hucAuf3FqC1iVktPcqTU"
+          alt="" />
+        <img class="slides" id="img2"
+          src="https://www.w3schools.com/bootstrap/chicago.jpg?fbclid=IwAR2YwkwVO-NDSgL_E3F0qxLLjZr2AWQce9qJp0MtAguGNOyQZZ46iMWRcOw"
+          alt="" />
+        <img class="slides" id="img3"
+          src="https://www.w3schools.com/bootstrap/ny.jpg?fbclid=IwAR0VHofGuSX3zYJsi-qGumEVriN79yR53y-FIAdN4p_OyrY7Fvrpb2hdSVw"
+          alt="" />
+
+      </div>
+    </div>
+    <div class="cupid">
+      <a class="slider-next" id="next" onclick="slide(4)">&#10095;</a>
+      <a class="slider-prev" id="prev" onclick="slide(-1)">&#10094;</a>
+    </div>
+  </div>
+  <script>
+    let img1 = document.getElementById("img1");
+    let img2 = document.getElementById("img2");
+    let img3 = document.getElementById("img3");
+
+    let dot1 = document.getElementById("dot1");
+    let dot2 = document.getElementById("dot2");
+    let dot3 = document.getElementById("dot3");
+
+    let next = document.getElementById("next");
+    let prev = document.getElementById("prev");
+    let slides = document.getElementsByClassName("slides");
+
+    let index = 1;
+
+    // dot1.onclick = slide;
+    // function image1() {
+    //   img1.style.display = "block"
+    //   img2.style.display = "none"
+    //   img3.style.display = "none"
+
+    // }
+    // dot2.onclick = slide;
+    // function image2() {
+
+    //   img1.style.display = "none"
+    //   img2.style.display = "block"
+    //   img3.style.display = "none"
+    // }
+    // dot3.onclick = slide;
+    // function image3() {
+
+    //   img1.style.display = "none"
+    //   img2.style.display = "none"
+    //   img3.style.display = "block"
+    // }
+    function slide(e) {
+    
+      if(e>0 && e<4){
+        index=e
+      }
+      
+      for (let i = 0; i < slides.length; i++) {
+        const sli = slides[i];
+        sli.style.display = "none"
+        
+      }
+      if (e == 1 ) {
+        img1.style.display = "block"
+      }
+      else if (e==2){
+        img2.style.display = "block"
+        
+      }
+      else if (e==3){
+        img3.style.display= "block"
+        
+      }
+      if(e == 4 ){
+        index++
+        
+      }
+       if(e==-1){
+        index--
+      }
+    
+      for (let i = 0; i < slides.length; i++) {
+        const sli = slides[i];
+        sli.style.display = "none"
+        
+      }
+      if (index == 1) {
+        img1.style.display = "block"
+        
+      }
+      else if (index==2){
+        img2.style.display = "block"
+        
+      }
+      else if (index==3){
+        img3.style.display= "block"
+        
+      }
+      else if(index==4){
+        index=1
+        img1.style.display = "block"
+      }
+      else if (index==0){
+        index=3
+        img3.style.display= "block"
+      }
+    }
+   
+  </script>
+
+</body>
+
 </html>
